@@ -38,7 +38,8 @@ pipeline {
         stage("Test"){
             steps{
                   dir("IRateYou2-Backend\IRateYou2.Core.Test"){
-                      sh "dotnet test" 
+                      sh "dotnet add package coverlet.collector"
+                      sh "dotnet test --collect: 'XPlat Code Coverage'" 
                   }
             }
         }
