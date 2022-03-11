@@ -6,10 +6,8 @@ pipeline {
                 stage("Build api"){
                     steps {
                         echo "echo 'We are building the API'"
-                        dir("IRateYou2-Backend"){
-                            dir("IRateYou2.WebAPI"){
-                                sh "dotnet build" 
-                            }
+                        dir("IRateYou2-Backend/IRateYou2.WebAPI"){
+                            sh "dotnet build" 
                         }
                     }
                 }
