@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    node("myAgeny){
     stages {
         stage("Build") {
             parallel{
@@ -23,5 +23,6 @@ pipeline {
                 sh "tests run"
             }
         }
+    }
     }
 }
