@@ -37,7 +37,7 @@ pipeline {
         }
         stage("Test"){
             steps{
-                  dir("IRateYou2-Backend"){
+                  dir("IRateYou2-Backend\IRateYou2.Core.Test"){
                       sh "dotnet test" 
                   }
             }
