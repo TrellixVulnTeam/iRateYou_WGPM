@@ -19,6 +19,7 @@ pipeline {
                     steps{
                         publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
                     }
+                }
                 stage("Build api"){
                     steps {
                         echo "echo 'We are building the API'"
@@ -40,6 +41,5 @@ pipeline {
             }
         }
     }
-  }
+  
 }
-
