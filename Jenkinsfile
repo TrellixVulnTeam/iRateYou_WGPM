@@ -1,8 +1,24 @@
 pipeline {
-    node("myAgeny){
+    agent any
+    triggers {
+        pollSCM("*/5 * * * *")
+    }
+    environment {
+        COMITMSG = sh(returnStdout: true, script: "git log -1 --oneline")
+    }
     stages {
+        stage("Startup") {
+            step {
+                buildDescription env.COMMITMSG
+            }
+        }
+        
         stage("Build") {
             parallel{
+                stage("Coverage Adapter"){
+                    steps{
+                        publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
+                    }
                 stage("Build api"){
                     steps {
                         echo "echo 'We are building the API'"
@@ -23,6 +39,5 @@ pipeline {
                 sh "tests run"
             }
         }
-    }
     }
 }
