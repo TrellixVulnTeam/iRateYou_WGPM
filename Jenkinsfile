@@ -44,8 +44,8 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts "IRateYou/TestResults/*/coverage.cobertura.xml"
-                    publishCoverage adapters: [coberturaAdapter('IRateYou/TestResults/*/coverage.cobertura.xml')]
+                    archiveArtifacts "IRateYou2-Backend/IRateYou2.Core.Test/TestResults/*/coverage.cobertura.xml"
+                    publishCoverage adapters: [coberturaAdapter('IRateYou2-Backend/IRateYou2.Core.Test/TestResults/*/coverage.cobertura.xml')]
                 }
             }
 
@@ -53,4 +53,3 @@ pipeline {
     }
   
 }
-
