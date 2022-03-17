@@ -45,7 +45,8 @@ pipeline {
             post {
                 success {
                     archiveArtifacts "IRateYou2-Backend/IRateYou2.Core.Test/TestResults/*/coverage.cobertura.xml"
-                    publishCoverage adapters: [coberturaAdapter('IRateYou2-Backend/IRateYou2.Core.Test/TestResults/*/coverage.cobertura.xml')]
+                    publishCoverage adapters: [coberturaAdapter(path: 'IRateYou2-Backend/IRateYou2.Core.Test/TestResults/*/coverage.cobertura.xml',
+                     thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 10.0, unstableThreshold: 1.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
 
