@@ -51,5 +51,11 @@ pipeline {
 
         }
     }
+    post {
+        always {
+            sh "echo 'The pipeline has finished!'"
+            discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/954004988013707334/-YGVFR1tMHesJqAWoPDf1oR-9f81WPC7CmL48L-60yh5dMNMUCs6D6DTm-gRe2SZJ_Pw'
+        }
+    }
   
 }
