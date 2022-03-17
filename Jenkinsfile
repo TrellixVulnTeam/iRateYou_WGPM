@@ -42,7 +42,15 @@ pipeline {
                       sh "dotnet test --collect:'XPlat Code Coverage'" 
                   }
             }
+            post {
+                success {
+                    archiveArtifacts "IRateYou/TestResults/*/coverage.cobertura.xml"
+                    publishCoverage adapters: [coberturaAdapter('IRateYou/TestResults/*/coverage.cobertura.xml')]
+                }
+            }
+
         }
     }
   
 }
+
