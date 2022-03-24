@@ -55,8 +55,10 @@ pipeline {
     }
     post {
         always {
+            withCredentials([string(credentialsId: 'DiscordWebhookURL', variable: 'WEBHOOK_URL')]) {
             sh "echo 'The pipeline has finished!'"
-            discordSend description: "Jenkins Pipeline Build", footer: "Gruppe A2", link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley", image: "https://i.imgur.com/jWr67J8.png", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/954004988013707334/-YGVFR1tMHesJqAWoPDf1oR-9f81WPC7CmL48L-60yh5dMNMUCs6D6DTm-gRe2SZJ_Pw'
+            discordSend description: "Jenkins Pipeline Build", footer: "Gruppe A2", link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley", image: "https://i.imgur.com/jWr67J8.png", result: currentBuild.currentResult, title: JOB_NAME, wwebhookURL: "${WEBHOOK_URL}"
+            }
         }
     }
   
