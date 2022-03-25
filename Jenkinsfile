@@ -16,11 +16,7 @@ pipeline {
         
         stage("Build") {
             parallel{
-                stage("Coverage Adapter"){
-                    steps{
-                        publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco.xml')]
-                    }
-                }
+
                 stage("Build api"){
                     steps {
                         echo "echo 'We are building the API'"
