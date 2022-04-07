@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: "./IRateYou2-Backend/DockerFile"
+    container_name: "WebApi"
+    ports:
+      - "8091:80"
+    depends_on :
+      - "db"
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+        MYSQL_DATABASE: MY_DATABASE
+        MYSQL_USER: MYSQL_USER
+        MYSQL_PASSWORD: MYSQL_PASSWORD
+    ports:
+        - 9906:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    ports:
+        - 8092:80
+    restart: always
+    environment:
+        PMA_HOST: db
+    depends_on:
+        - db
+  #web:
+  #  build:
+  #    context: .
+  #    dockerfile: "./IRateYou2-Frontend"
+  #  container_name: "web"
+  #  ports:
+  #    - "8090:80"
+  #  depends_on:
+  #    - "db"

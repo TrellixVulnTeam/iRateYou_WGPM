@@ -28,6 +28,8 @@ pipeline {
                 stage("Build Frontend"){
                     steps{
                         sh "echo 'We are building the frontend'"
+                        dir("IRateYou2-Frontend")
+                            sh "ng serve"
                     }
                 }
             }

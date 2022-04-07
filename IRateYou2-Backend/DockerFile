@@ -1,0 +1,4 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
+WORKDIR /app
+COPY ./IRateYou2-Backend/IRateYou2.WebAPI/bin/Debug/net5.0/publish /app/publish 
+ENTRYPOINT ["dotnet", "/app/publish/IRateYou2.WebAPI.dll"]
